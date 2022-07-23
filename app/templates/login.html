@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test forms</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <h3>register</h3>
+    <form action="/regi" method="post">
+        <input type="text" name="first_name" value="first">
+        <input type="text" name="last_name" value="last">
+        <input type="email" name="email" value="test@email.com">
+        <input type="password" name="password" value="12345678">
+        <input type="password" name="confirm" value="12345678">
+        <input type="submit" value="register">
+    </form>
+    <h2>login</h2>
+    <form action="/log" method="post">
+        <input type="email" name="email" value="test@email.com">
+        <input type="password" name="password" value="12345678">
+        <input type="submit" value="login">
+    </form>
+    <h2>edit user</h2>
+    <form action="/user/edit" method="post">
+        <input type="text" name="first_name" value="firstt">
+        <input type="text" name="last_name" value="lastt">
+        <input type="email" name="email" value="test@email.com2">
+        <input type="hidden" name="id" value="{{ session['id'] }}">
+        <input type="submit" value="edit">
+    </form>
+    <h2>delete user</h2>
+    <form action="/user/delete" method="post">
+        <input type="hidden" name="id" value="{{ session['id'] }}">
+        <input type="submit" value="delete account">
+    </form>
+    <h2>logout</h2>
+    <a href="/logout">logout</a>
+    <h1>pets</h1>
+    <h2>create pet</h2>
+    <form action="/pet/add" method="post">
+        <input type="hidden" name="id" value="{{ session['id'] }}">
+        <input type="text" name="pet_name" value="pet_name">
+        <input type="text" name="pet_type" value="pet_type">
+        <input type="text" name="pet_breed" value="pet_breed">
+        <input type="submit" value="create pet">
+    </form>
+    <h2>edit pet</h2>
+    <form action="/pet/edit" method="post">
+        <input type="hidden" name="id" value="1">
+        <input type="text" name="pet_name" value="pet name">
+        <input type="text" name="pet_type" value="pet type">
+        <input type="text" name="pet_breed" value="pet breed">
+        <input type="submit" value="edit pet">
+    </form>
+    <h2>delete pet</h2>
+    <form action="/pet/delete" method="post">
+        <input type="hidden" name="id" value="1">
+        <input type="submit" value="delete pet">
+    </form>
+    <h1>forums</h1>
+    <form action="/forum/add" method="post">
+        <input type="hidden" name="user_id" value="{{ session['id'] }}">
+        <input type="text" name="title" value="title">
+        <textarea name="description" cols="30" rows="10">
+            description
+        </textarea>
+        <input type="submit">
+    </form>
+</body>
+</html>
