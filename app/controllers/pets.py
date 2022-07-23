@@ -6,12 +6,12 @@ from app.models.pet import Pet
 def add_pet():
     Pet.pet_validation(request.form)
     selected = Pet.create_pet(request.form)
-    return render_template('pet_test.html', selected = selected)
+    return render_template('TEST_pet.html', selected = selected)
 
 @app.route('/pet/edit', methods=['POST'])
 def edit_pet():
     selected = Pet.edit_pet(request.form)
-    return render_template('pet_test.html', selected = selected)
+    return render_template('TEST_pet.html', selected = selected)
 
 @app.route('/pet/delete', methods=['POST'])
 def delete_pet():

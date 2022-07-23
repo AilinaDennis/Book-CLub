@@ -6,4 +6,4 @@ from app.models.forum import Forum
 def add_forum():
     selected = Forum.create_forum(request.form)
     forums = Forum.forum_list()
-    return render_template('forum_test.html', selected = selected, forums = forums)
+    return render_template('TEST_forum.html', selected = selected, forums = forums)
