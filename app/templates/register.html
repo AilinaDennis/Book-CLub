@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" type="text/css" href=>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <head>
     <title>Login</title>
 </head>
 <body>
-    <div class="d-flex justify-content-around">
-        <form method="post" class="">
+    <div>
+        <form action="/regi" method="post" class="register">
             <h2 class="text-primary">Register</h2>
+            {% with messages = get_flashed_messages(category_filter=['regi']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>All Fields Must Be Met</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
             <div class="form-group">
                 <label for="first_name">First Name:</label>
                 <input type="text" name="first_name" class="form-control">
@@ -28,19 +38,30 @@
                 <label for="confirm">Confirm Password:</label>
                 <input type="password" name="confirm" class="form-control">
             </div>
-            <input type="submit" value="Register" class="btn btn-primary">
+            <input type="submit" value="Register" class="btn">
         </form>
-        <form>
+        <form action="/log" method="post" class="login">
+            <h2 class="text-primary">Login</h2>
             <div class="form-group">
+                {% with messages = get_flashed_messages(category_filter=['log']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>All Fields Must Be Met</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
                 <label for="email">Email:</label>
                 <input type="text" name="email" class="form-control">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" name="password">
             </div>
             
-            <input type="submit" class="btn btn-success">
+            <input type="submit" value="login" class="btn">
         </form>
     </div>
 </body>

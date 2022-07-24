@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" type="text/css" href=>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <head>
     <title>View Pets</title>
 </head>
 <body>
-    <nav class="">
-        <h1 class="">Welcome</h1>
-        <div class="">
-            <a href="" class="">Dashboard</a>
-            <a href="" class="">Logout</a>
+    <nav class="nav">
+        <h1 class="text-primary">Welcome</h1>
+        <div>
+            <a href="" class="text-nav">Dashboard</a>
+            <a href="/logout" class="text-nav">Logout</a>
 
         </div>
 
     </nav>
-    <div class="">
-        <div class="">
-            <h2 class=""></h2>
-            <p class="">Description:</p>
-            <p class="">Date Published:</p>
+    <div>
+        <div class="container">
+            <h2 class="text-primary"></h2>
+            <p class="text-small">Type:</p>
+            <p class="text-small">Breed:</p>
+            <p class="text-small">Description:</p>
         </div>
     </div>
 </body>
