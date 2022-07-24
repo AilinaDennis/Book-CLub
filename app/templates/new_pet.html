@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" type="text/css" href=>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <head>
     <title>Upload Pet</title>
 </head>
 <body>
-    <nav class="">
-        <h1 class="">Welcome</h1>
-        <div class="">
-            <a href="" class="">Dashboard</a>
-            <a href="" class="">Logout</a>
+    <nav class="nav">
+        <h1 class="text-primary">Welcome</h1>
+        <div>
+            <a href="" class="text-nav">Dashboard</a>
+            <a href="" class="text-nav">Logout</a>
 
         </div>
 
     </nav>
-    <form method="post" class="">
-        <h2 class="">Upload your Pet</h2>
-        <div class="">
+    <form method="post" class="new">
+        <h2 class="text-primary">Upload your Pet</h2>
+        <div>
             <input type="hidden" title="id">
-            <div class="">
-                <div class="">
+            <div>
+                <div>
                     <label for="name">Name:</label>
-                    <input type="text" name="name" class="">
+                    <input type="text" name="name" class="text-small">
                 </div>
-                <div class="">
+                <div>
                     <label for="description">Tell us about your pet</label>
-                    <textarea name="description" class=""></textarea>
+                    <textarea name="description" class="text-small"></textarea>
                 </div>
                 <br>
-                <input class="">
+                <input class="btn">
                 </div>
             </div>
         </div>
