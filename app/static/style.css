@@ -1,0 +1,56 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    border: 3px solid #555;
+}
+
+.text-primary{
+    font-size:50px;
+    margin:0px;
+}
+
+.form-group{
+    margin:10px;
+}
+
+.login{
+
+}
+
+.register{
+
+}
+
+.nav{
+
+}
+
+.text-nav{
+
+}
+
+.container{
+
+}
+
+.text-small{
+
+}
+
+.btn{
+
+}
+
+.table{
+
+}
+
+.edit{
+
+}
+
+.new{
+    
+}
