@@ -7,28 +7,42 @@
 <body>
     <nav class="nav">
         <h1 class="text-primary">Welcome</h1>
-        <div>
+        <div class="">
             <a href="" class="text-nav">Dashboard</a>
-            <a href="" class="text-nav">Logout</a>
+            <a href="/logout" class="text-nav">Logout</a>
 
         </div>
 
     </nav>
-    <form method="post" class="new">
-        <h2 class="text-primary">Upload your Pet</h2>
+    <form action="/pet/add" method="post" class="new">
+        <h2 class="">Upload your Pet</h2>
+        {% with messages = get_flashed_messages(category_filter=['pet']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <strong>All Fields Must Be Met</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
         <div>
             <input type="hidden" title="id">
             <div>
                 <div>
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" class="text-small">
+                    <label for="pet_name">Name:</label>
+                    <input type="text" name="pet_name" class="text-small">
                 </div>
                 <div>
-                    <label for="description">Tell us about your pet</label>
+                    <label for="pet_type">Animal Type:</label>
+                    <textarea name="pet_type" class="text-small"></textarea>
+                    <label for="pet_breed">Animal Breed:</label>
+                    <textarea name="pet_breed" class="text-small"></textarea>
+                    <label for="description">Tell us about your pet:</label>
                     <textarea name="description" class="text-small"></textarea>
                 </div>
                 <br>
-                <input class="btn">
+                <input type="submit" value="Add Pet" class="btn">
                 </div>
             </div>
         </div>
