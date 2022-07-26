@@ -5,11 +5,7 @@ from app.models.comment import Comment
 
 @app.route('/forum/add')
 def forum_info():
-<<<<<<< HEAD
     return render_template('forum.html')
-=======
-    return render_template('forum_input.html')
->>>>>>> 0725ae19eb765f42468ebb4780107f30a9de8fc7
 
 @app.route('/forum/create', methods=['POST'])
 def add_forum():
@@ -19,9 +15,6 @@ def add_forum():
 @app.route('/forum/<selected>')
 def show_forum(selected):
     forum = Forum.get_forum(selected)
-<<<<<<< HEAD
-    return render_template('forum.html', forum = forum)
-=======
     comments = Forum.forum_comments(selected)
     return render_template('forum_display.html', forum = forum, comments = comments)
 
@@ -42,7 +35,6 @@ def change_forum(selected):
     print(request.form)
     Forum.edit_forum(request.form)
     return redirect(f'/forum/{selected}')
->>>>>>> 0725ae19eb765f42468ebb4780107f30a9de8fc7
 
 @app.route('/forums')
 def forum_list():
