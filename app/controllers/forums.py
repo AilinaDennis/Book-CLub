@@ -1,6 +1,7 @@
 from flask import render_template, redirect, session, request
 from app import app
 from app.models.forum import Forum
+from app.models.comment import Comment
 
 @app.route('/forum/add')
 def forum_info():
@@ -14,7 +15,15 @@ def add_forum():
 @app.route('/forum/<selected>')
 def show_forum(selected):
     forum = Forum.get_forum(selected)
-    return render_template('forum_display.html', forum = forum)
+    comments = Forum.forum_comments(selected)
+    return render_template('forum_display.html', forum = forum, comments = comments)
+
+@app.route('/<forum>/comment/edit/<selected>')
+def edit_comment(forum, selected):
+    comments = Forum.forum_comments(forum)
+    forum = Forum.get_forum(forum)
+    selected = int(selected)
+    return render_template('forum_display.html', forum = forum, comments = comments, selected = selected)
 
 @app.route('/forum/edit/<selected>')
 def edit_forum(selected):

@@ -30,6 +30,7 @@
                     <img>
                     <td>{{pet.pet_name}}</td>
                         <td>
+                            <img src = "{{ url_for('static',filename='media/dog.jpeg') }}" alt="dog">
                             <a href="/pet/{{pet.id}}"}}>View</a>
                             {% if pet.owner.id == session['id'] %}
                             <a href="/pet/edit/{{pet.id}}">Edit</a>
