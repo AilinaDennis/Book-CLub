@@ -10,13 +10,18 @@ def main():
 def register():
     User.user_validation(request.form)
     selected = User.create_user(request.form)
-    return render_template('dashboard.html', selected = selected)
+    return redirect(f'/dashboard/{selected.id}')
 
 @app.route('/log', methods=['POST'])
 def login():
     selected = User.check_login(request.form)
-    pets = User.user_pets(session['id'])
-    return render_template('dashboard.html', selected = selected, pets = pets)
+    return redirect(f'/dashboard/{selected.id}')
+
+@app.route('/dashboard/<selected>')
+def dashboard(selected):
+    user = User.get_user(selected)
+    pets = User.user_pets(selected)
+    return render_template('dashboard.html', user = user, pets = pets)
 
 @app.route('/user/edit', methods=['POST'])
 def edit_user():

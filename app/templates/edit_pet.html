@@ -6,14 +6,14 @@
 </head>
 <body>
     <nav class="nav">
-        <h1 class="text-primary">Welcome {{user.first_name}}</h1>
+        <h1 class="text-primary">Welcome {{ session['first_name'] }}</h1>
         <div>
             <a href="" class="text-nav">Dashboard</a>
             <a href="/logout" class="text-nav">Logout</a>
         </div>
 
     </nav>
-    <form action="/pet/edit{{edit.id}}" method="post" class="edit">
+    <form action="/pet/change/{{ pet.id }}" method="post" class="edit">
         <h2 class="">Edit your Pet</h2>
         {% with messages = get_flashed_messages(category_filter=['pet']) %}
             {% if messages %}
@@ -26,23 +26,22 @@
             {% endif %}
         {% endwith %}
         <div class="text-primary">
-            <input type="hidden" title="id" value={{edit.id}}>
             <div>
                 <div>
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" class="text-small" value="{{edit.pet_name}}">
+                    <label for="name">Name: {{ pet.name }}</label>
+                    <input type="text" name="pet_name" class="text-small" value="{{pet.pet_name}}">
                 </div>
                 <div class="">
                     <label for="type">Animal Type:</label>
-                    <textarea name="type" class="text-small">{{edit.pet_type}}</textarea>
+                    <textarea name="pet_type" class="text-small">{{ pet.pet_type }}</textarea>
                     <label for="breed">Animal Breed:</label>
-                    <textarea name="breed" class="text-small">{{edit.pet_breed}}</textarea>
+                    <textarea name="pet_breed" class="text-small">{{ pet.pet_breed }}</textarea>
                     <label for="description">Tell us about your pet</label>
-                    <textarea name="description" class="text-small">{{edit.pet_description}}</textarea>
+                    <textarea name="pet_description" class="text-small">{{ pet.pet_description }}</textarea>
                 </div>
                 <br>
                 <input type="submit" value="Edit Pet" class="btn">
-
+                <input type="hidden" name="id" value={{pet.id}}>
                 </div>
             </div>
         </div>

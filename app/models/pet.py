@@ -74,6 +74,7 @@ class Pet():
 
     @staticmethod
     def edit_pet(data):
+        print(data)
         
         query = """UPDATE pets
         SET pet_name = %(pet_name)s,
