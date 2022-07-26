@@ -8,8 +8,8 @@
 </head>
 <body>
     <form action="/forum/create" method="post">
-        <input type="text" name="forum_title" value="post_title">
-        <input type="text" name="forum_description" value="post_description">
+        <input type="text" name="title" value="post_title">
+        <input type="text" name="description" value="post_description">
         <input type="hidden" name="user_id" value="{{ session['id'] }}">
         <input type="hidden" name="pet_id" value="1">
         <input type="submit" value="add forum">
