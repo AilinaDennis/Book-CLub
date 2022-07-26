@@ -7,11 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    {% for forum in forums %}
-    <p>{{ forum.forum_title }}</p>
-    <p>{{ forum.forum_description }}</p>
-    <p>{{ forum.forum_created_at }}</p>
-    <p>{{ forum.owner.first_name }}</p>
-    {% endfor %}
+    <form action="/user/edit"></form>
+    <input type="text" name="first_name" value="{{ selected.first_name }}">
+    <input type="text" name="last_name" value="{{ selected.last_name }}">
+    <input type="text" name="email" value="{{ selected.email }}">
 </body>
 </html>

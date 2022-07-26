@@ -9,6 +9,7 @@ class Pet():
     def __init__(self, data):
         self.id = data['id']
         self.pet_name = data['pet_name']
+        self.pet_description = data['pet_description']
         self.pet_type = data['pet_type']
         self.pet_breed = data['pet_breed']
         self.created_at = data['created_at']
@@ -36,6 +37,7 @@ class Pet():
             'pet_name' : input['pet_name'],
             'pet_type' : input['pet_type'],
             'pet_breed' : input['pet_breed'],
+            'pet_description' : input['pet_description'],
             'id' : session['id']
         }
 
@@ -43,15 +45,15 @@ class Pet():
 
     @classmethod
     def create_pet(cls, data):
-        
-        data = Pet.pet_parse(data)
         print(data)
+        data = Pet.pet_parse(data)
         query = """
-        INSERT INTO pets(pet_name, pet_type, pet_breed, created_at, updated_at, user_id)
-        VALUES (%(pet_name)s, %(pet_type)s, %(pet_breed)s, NOW(), NOW(), %(id)s);
+        INSERT INTO pets(pet_name, pet_description, pet_type, pet_breed, created_at, updated_at, user_id)
+        VALUES (%(pet_name)s, %(pet_description)s, %(pet_type)s, %(pet_breed)s, NOW(), NOW(), %(id)s);
         """
         result =  connectToMySQL(db).query_db(query, data)
         selected = Pet.get_pet(result)
+        
         return selected
 
     @classmethod
@@ -74,10 +76,10 @@ class Pet():
 
     @staticmethod
     def edit_pet(data):
-        print(data)
         
         query = """UPDATE pets
         SET pet_name = %(pet_name)s,
+        pet_description = %(pet_description)s,
         pet_type = %(pet_type)s, 
         pet_breed = %(pet_breed)s, 
         updated_at = NOW() 
