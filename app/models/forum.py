@@ -84,13 +84,13 @@ class Forum():
         return forums
 
     @classmethod
-    def edit_forum(data):
+    def edit_forum(cls, data):
 
         query = """
         UPDATE forums
         SET title = %(title)s,
         description = %(description)s,
-        updated_at = NOW(),
+        updated_at = NOW()
         WHERE id = %(id)s;
         """
         result = connectToMySQL(db).query_db(query, data)
@@ -98,7 +98,11 @@ class Forum():
         return selected
 
     @classmethod
-    def delete_forum(data):
+    def delete_forum(cls, data):
+
+        data = {
+            'id' : data
+        }
         
         query = """
         DELETE

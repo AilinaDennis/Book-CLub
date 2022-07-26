@@ -10,6 +10,10 @@
     {{ forum.forum_title }}
     {{ forum.forum_description }}
     {{ forum.owner.id }}
+    {% if forum.owner.id == session['id'] %}
+    <a href="/forum/delete/{{ forum.id }}">Delete Forum</a>
+    <a href="/forum/edit/{{ forum.id }}">Edit Forum</a>
+    {% endif %}
 
 </body>
 </html>

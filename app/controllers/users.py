@@ -23,6 +23,11 @@ def dashboard(selected):
     pets = User.user_pets(selected)
     return render_template('dashboard.html', user = user, pets = pets)
 
+@app.route('/user/<selected>')
+def change_user(selected):
+    selected = User.get_user(selected)
+    return render_template('whatever.html', selected = selected)
+
 @app.route('/user/edit', methods=['POST'])
 def edit_user():
     selected = User.edit_user(request.form)
