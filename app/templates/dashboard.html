@@ -24,14 +24,19 @@
                 </tr>
             </thead>
             <tbody>
+                {% for pet in pets %}
                 <tr>
                     <img>
+                    <td>{{pet.pet_name}}</td>
                         <td>
-                            <a href=>View</a>
-                            <a href="/pet/edit">Edit</a>
-                            <a href="/pet/delete">Delete</a>
+                            <a href="/pet/{{pet_object.id}}"}}>View</a>
+                            {% if pet.user_id == session.user_id %}
+                            <a href="/pet/edit{{pet.id}}">Edit</a>
+                            <a href="/pet/delete{{pet.id}}">Delete</a>
+                            {% endif %}
                         </td>
                     </tr>
+                    {% endfor %}
             </tbody>
         </table>
     </div>

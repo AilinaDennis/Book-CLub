@@ -34,4 +34,4 @@ def delete_pet():
 @app.route('/pet/<selected>')
 def show_pet(selected):
     pet = Pet.get_pet(selected)
-    return 'show_pet.html'
+    return ('show_pet.html', pet == pet)
