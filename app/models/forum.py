@@ -11,8 +11,8 @@ class Forum():
     def __init__(self, data):
 
         self.id = data['id']
-        self.forum_title = data['forum_title']
-        self.forum_description = data['forum_description']
+        self.forum_title = data['title']
+        self.forum_description = data['description']
         self.forum_created_at = data['created_at']
         self.forum_updated_at = data['updated_at']
         self.owner = None
@@ -22,8 +22,8 @@ class Forum():
     def create_forum(cls, data):
 
         query = """
-        INSERT INTO forums(forum_title, forum_description, created_at, updated_at, user_id)
-        VALUES(%(forum_title)s, %(forum_description)s, NOW(), NOW(), %(user_id)s);
+        INSERT INTO forums(title, description, created_at, updated_at, user_id)
+        VALUES(%(title)s, %(description)s, NOW(), NOW(), %(user_id)s);
         """
         result = connectToMySQL(db).query_db(query, data)
         selected = Forum.get_forum(result)
@@ -37,7 +37,7 @@ class Forum():
         }
 
         query = """
-        SELECT forums.id, forums.forum_title, forums.forum_description, forums.created_at, forums.updated_at, users.id as user_id, users.first_name, 
+        SELECT forums.id, forums.title, forums.description, forums.created_at, forums.updated_at, users.id as user_id, users.first_name, 
         users.last_name, users.email, users.created_at, users.updated_at
         FROM forums
         JOIN users ON forums.user_id = users.id
@@ -61,7 +61,7 @@ class Forum():
     def forum_list(cls):
         
         query = """
-        SELECT forums.id, forums.forum_title, forums.forum_description, forums.created_at, forums.updated_at, users.id as user_id, users.first_name, 
+        SELECT forums.id, forums.title, forums.description, forums.created_at, forums.updated_at, users.id as user_id, users.first_name, 
         users.last_name, users.email, users.created_at, users.updated_at
         FROM forums
         JOIN users ON forums.user_id = users.id
@@ -88,7 +88,7 @@ class Forum():
 
         query = """
         UPDATE forums
-        SET forum_title = %(title)s,
+        SET title = %(title)s,
         description = %(description)s,
         updated_at = NOW(),
         WHERE id = %(id)s;
