@@ -4,7 +4,7 @@ from app.models.forum import Forum
 
 @app.route('/forum/add')
 def forum_info():
-    return render_template('forum_input_test.html')
+    return render_template('forum.html')
 
 @app.route('/forum/create', methods=['POST'])
 def add_forum():
@@ -14,7 +14,7 @@ def add_forum():
 @app.route('/forum/<selected>')
 def show_forum(selected):
     forum = Forum.get_forum(selected)
-    return render_template('forum_display_test.html', forum = forum)
+    return render_template('forum.html', forum = forum)
 
 @app.route('/forums')
 def fourm_list():

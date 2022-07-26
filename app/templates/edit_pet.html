@@ -8,7 +8,7 @@
     <nav class="nav">
         <h1 class="text-primary">Welcome {{ session['first_name'] }}</h1>
         <div>
-            <a href="" class="text-nav">Dashboard</a>
+            <a href="/dashboard/{{session['id']}}" class="text-nav">Dashboard</a>
             <a href="/logout" class="text-nav">Logout</a>
         </div>
 
@@ -36,7 +36,7 @@
                     <textarea name="pet_type" class="text-small">{{ pet.pet_type }}</textarea>
                     <label for="breed">Animal Breed:</label>
                     <textarea name="pet_breed" class="text-small">{{ pet.pet_breed }}</textarea>
-                    <label for="description">Tell us about your pet</label>
+                    <label for="pet_description">Tell us about your pet</label>
                     <textarea name="pet_description" class="text-small">{{ pet.pet_description }}</textarea>
                 </div>
                 <br>

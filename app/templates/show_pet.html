@@ -6,9 +6,9 @@
 </head>
 <body>
     <nav class="nav">
-        <h1 class="text-primary">Welcome</h1>
+        <h1 class="text-primary">Welcome {{ session['first_name'] }}</h1>
         <div>
-            <a href="" class="text-nav">Dashboard</a>
+            <a href="/dashboard/{{session['id']}}" class="text-nav">Dashboard</a>
             <a href="/logout" class="text-nav">Logout</a>
 
         </div>

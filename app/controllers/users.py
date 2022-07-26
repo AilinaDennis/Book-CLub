@@ -19,9 +19,15 @@ def login():
 
 @app.route('/dashboard/<selected>')
 def dashboard(selected):
+    print(selected)
     user = User.get_user(selected)
     pets = User.user_pets(selected)
     return render_template('dashboard.html', user = user, pets = pets)
+
+@app.route('/user/<selected>')
+def change_user(selected):
+    selected = User.get_user(selected)
+    return render_template('edit_user.html', selected = selected)
 
 @app.route('/user/edit', methods=['POST'])
 def edit_user():
