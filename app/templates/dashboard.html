@@ -12,7 +12,11 @@
             <a href="/create/pet" class="text-nav">Add a Pet</a>
             <a href="/user/{{session['id']}}" class="text-nav">Edit Profile</a>
             <a href="/logout" class="text-nav">Logout</a>
+<<<<<<< HEAD
             <a href="/forum/add" class="text-nav">Forum</a>
+=======
+            <a href="/forums"><button>Forums</button></a>
+>>>>>>> 0725ae19eb765f42468ebb4780107f30a9de8fc7
 
         </div>
 
@@ -31,8 +35,9 @@
                     <img>
                     <td>{{pet.pet_name}}</td>
                         <td>
+                            <img src = "{{ url_for('static',filename='media/dog.jpeg') }}" alt="dog">
                             <a href="/pet/{{pet.id}}"}}>View</a>
-                            {% if pet.user_id == session.user_id %}
+                            {% if pet.owner.id == session['id'] %}
                             <a href="/pet/edit/{{pet.id}}">Edit</a>
                             <a href="/pet/delete/{{pet.id}}">Delete</a>
                             {% endif %}

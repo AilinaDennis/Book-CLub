@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forum</title>
+</head>
+<body>
+    {{ forum.forum_title }}
+    {{ forum.forum_description }}
+    {{ forum.owner.first_name }}
+    {{ forum.owner.last_name }}
+    {% if forum.owner.id == session['id'] %}
+    <a href="/forum/delete/{{ forum.id }}">Delete Forum</a>
+    <a href="/forum/edit/{{ forum.id }}">Edit Forum</a>
+    {% endif %}
+
+    <div class="comments">
+        <form action="/comment/add/{{ forum.id }}" method="post">
+            <input type="hidden" name="forum_id" value="{{ forum.id }}">
+            <input type="hidden" name="user_id" value="{{ session['id'] }}">
+            <input type="text" name="comment_body" placeholder="Add a comment...">
+            <input type="submit" value="Post">
+        </form>
+        <div>
+            {% for comment in comments %}
+                <div class="user">
+                    {{ comment.owner.first_name }}
+                    {{ comment.owner.last_name }}
+                </div>
+                {% if comment.id == selected %}
+                    <form action="/{{ forum.id }}/comment/change/{{ comment.id }}" method="post">
+                        <input type="hidden" name="id" value="{{ comment.id }}">
+                        <input type="text" name="comment_body" value="{{ comment.comment_body }}">
+                        <input type="submit" value="Change">
+                        <a href="/forum/{{ forum.id }}">Cancel</a>
+                    </form>
+                {% else %}
+                    <p>{{ comment.comment_body }}</p>
+                    {% if session['id'] == comment.owner.id %}
+                        <a href="/{{ forum.id }}/comment/edit/{{ comment.id }}">Edit</a>
+                        <a href="/{{ forum.id }}/comment/delete/{{ comment.id }}">Delete</a>
+                    {% endif %}
+                {% endif %}
+                <p>Commented On: {{  comment.created_at }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -27,7 +27,11 @@ def dashboard(selected):
 @app.route('/user/<selected>')
 def change_user(selected):
     selected = User.get_user(selected)
+<<<<<<< HEAD
     return render_template('edit_user.html', selected = selected)
+=======
+    return render_template('whatever.html', selected = selected)
+>>>>>>> 0725ae19eb765f42468ebb4780107f30a9de8fc7
 
 @app.route('/user/edit', methods=['POST'])
 def edit_user():

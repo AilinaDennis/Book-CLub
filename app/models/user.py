@@ -140,10 +140,20 @@ class User():
         JOIN users ON pets.user_id = users.id
         WHERE user_id = %(id)s
         """
-        user_pets = []
         result = connectToMySQL(db).query_db(query, data)
+        user_pets = []
         for index in result:
             pet = Pet(index)
+            pet_owner = {
+                'id' : result[0]['user_id'],
+                'first_name' : result[0]['first_name'],
+                'last_name' : result[0]['last_name'],
+                'email' : result[0]['email'],
+                'created_at' : result[0]['created_at'],
+                'updated_at' : result[0]['updated_at']
+            }
+            owner = User(pet_owner)
+            pet.owner = owner
             user_pets.append(pet)
         
         return user_pets

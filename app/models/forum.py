@@ -2,6 +2,7 @@ from app.config.mysqlconnection import MySQLConnection, connectToMySQL
 from flask import flash, session
 from app import app
 from app.models.user import User
+from app.models.comment import Comment
 
 db = 'pet_blog_schema'
 
@@ -84,13 +85,44 @@ class Forum():
         return forums
 
     @classmethod
-    def edit_forum(data):
+    def forum_comments(cls, data):
+        
+        data = {
+            'id' : data
+        }
+        query = """
+        SELECT comments.id, comments.user_id, comments.comment_body, comments.created_at, comments.updated_at, users.first_name, 
+        users.last_name, users.email, users.created_at, users.updated_at
+        FROM comments
+        JOIN users on comments.user_id = users.id
+        WHERE comments.forum_id = %(id)s
+        ORDER BY comments.id DESC;
+        """
+        comments = []
+        result = connectToMySQL(db).query_db(query, data)
+        for index in result:
+            comment = Comment(index)
+            comment_owner = {
+                    'id' : index['user_id'],
+                    'first_name' : index['first_name'],
+                    'last_name' : index['last_name'],
+                    'email' : index['email'],
+                    'created_at' : index['users.created_at'],
+                    'updated_at' : index['users.updated_at']
+                }
+            owner = User(comment_owner)
+            comment.owner = owner
+            comments.append(comment)
+        return comments
+
+    @classmethod
+    def edit_forum(cls, data):
 
         query = """
         UPDATE forums
         SET title = %(title)s,
         description = %(description)s,
-        updated_at = NOW(),
+        updated_at = NOW()
         WHERE id = %(id)s;
         """
         result = connectToMySQL(db).query_db(query, data)
@@ -98,7 +130,11 @@ class Forum():
         return selected
 
     @classmethod
-    def delete_forum(data):
+    def delete_forum(cls, data):
+
+        data = {
+            'id' : data
+        }
         
         query = """
         DELETE
