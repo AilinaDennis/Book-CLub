@@ -1,49 +1,79 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
-}
+    margin:0px auto;
+}   
 
-input[type=text]:focus, input[type=password]:focus {
-    border: 3px solid #555;
+.container{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .text-primary{
     font-size:50px;
-    margin:0px;
+    color: rgb(0, 144, 233);
+    width: fit-content;
+    height: fit-content;
+    margin: 0px auto;
 }
 
 .form-group{
-    margin:10px;
+    width:fit-content;
+    height: fit-content;
+    margin: 0px;
 }
 
-.login{
-
+.form-name{
+    width:fit-content;
+    height: fit-content;
+    margin:0px auto;
 }
 
-.register{
-
-}
-
-.nav{
-
-}
-
-.text-nav{
+.form-control{
 
 }
 
-.container{
-
-}
-
-.text-small{
-
+.login, .register{
+    border: 3px outset;
+    border-radius: 10px;
+    background-color: rgb(93, 93, 93);
+    width: 315px;
+    padding:10px;
 }
 
 .btn{
-
+    background-color:rgb(0, 157, 255);
+    justify-content: center;
 }
 
-.table{
+.nav{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgba(110, 196, 250, 0.71);
+}
+
+.nav2{
+    background-color: rgba(110, 196, 250, 0.71);
+}
+
+.text-nav{
+    margin: 10px;
+}
+
+.forums{
+    width:fit-content;
+    height: fit-content;
+    margin: 5px;
+}
+
+.upload{
+    font-size: 45px;
+    margin-top: 20px;
+    margin-left:20px;
+}
+
+.text-small{
 
 }
 
@@ -52,5 +82,64 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .new{
+    border: 3px solid rgb(0, 157, 255);
+    background-color: rgba(93, 93, 93, 0.735);
+    margin-left: 350px;
+    margin-top: 100px;
+    width: 700px;
+    height:500px;
+}
+
+.new-form{
+    font-size: 25px;
+    text-align: left;
+    margin: 0px;
+}
+
+.new-textarea{
     
+}
+
+.new-input{
+    
+}
+
+.new-form-control{
+    display:flex;
+    margin: 30px;
+}
+
+.pets{
+    width:fit-content;
+    height: fit-content;
+    font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pet-name{
+    width:fit-content;
+    height: fit-content;
+    font-size: 50px;
+}
+
+.table{
+    border: 3px solid rgb(0, 157, 255);;
+    height: 350px;
+    width: 200px;
+    background-color: rgba(93, 93, 93, 0.735);
+}
+
+.table-body{
+    align-items: center;
+}
+
+.table-data{
+    width:fit-content;
+    height: fit-content;
+}
+
+.link{
+    display:flex;
+    align-items: center;
 }
