@@ -13,8 +13,8 @@
         </div>
 
     </nav>
-    <form action="/pet/change/{{ pet.id }}" method="post" class="edit">
-        <h2 class="">Edit your Pet</h2>
+    <form action="/pet/change/{{ pet.id }}" method="post" class="new">
+        <h2 class="upload">Edit your Pet</h2>
         {% with messages = get_flashed_messages(category_filter=['pet']) %}
             {% if messages %}
             <div class="alert alert-danger" role="alert">
@@ -25,19 +25,19 @@
             </div>
             {% endif %}
         {% endwith %}
-        <div class="text-primary">
+        <div>
             <div>
                 <div>
-                    <label for="name">Name: {{ pet.name }}</label>
-                    <input type="text" name="pet_name" class="text-small" value="{{pet.pet_name}}">
+                    <label for="name" class="new-form">Name: {{ pet.name }}</label>
+                    <input type="text" name="pet_name" class="new-input" value="{{pet.pet_name}}">
                 </div>
                 <div class="">
-                    <label for="type">Animal Type:</label>
-                    <textarea name="pet_type" class="text-small">{{ pet.pet_type }}</textarea>
-                    <label for="breed">Animal Breed:</label>
-                    <textarea name="pet_breed" class="text-small">{{ pet.pet_breed }}</textarea>
-                    <label for="pet_description">Tell us about your pet</label>
-                    <textarea name="pet_description" class="text-small">{{ pet.pet_description }}</textarea>
+                    <label for="type" class="new-form">Animal Type:</label>
+                    <input name="pet_type" class="new-input" value="{{ pet.pet_type }}">
+                    <label for="breed" class="new-form">Animal Breed:</label>
+                    <input name="pet_breed" class="new-input" value="{{ pet.pet_breed }}">
+                    <label for="pet_description" class="new-form">Tell us about your pet:</label>
+                    <textarea name="pet_description" class="new-input" value="{{ pet.pet_description }}"></textarea>
                 </div>
                 <br>
                 <input type="submit" value="Edit Pet" class="btn">

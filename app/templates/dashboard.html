@@ -5,40 +5,59 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <nav class="nav">
+    <nav class="nav2">
         <h1 class="text-primary">Pet Blog</h1>
         <h2 class="text-primary">Welcome {{ session['first_name'] }}</h2>
-        <div class=>
+        <div class="profile">
+
+        </div>
+        <div class="nav">
             <a href="/create/pet" class="text-nav">Add a Pet</a>
             <a href="/user/{{session['id']}}" class="text-nav">Edit Profile</a>
             <a href="/logout" class="text-nav">Logout</a>
-            <a href="/forums"><button>Forums</button></a>
+            <a href="/forums" class="forums"><button>Forums</button></a>
 
         </div>
 
     </nav>
-    <div class=>
-
+    <div>
+        <h2 class="pets">Pets</h2>
+    </div>
+    <div class="container">
+        {% for pet in pets %}
         <table class="table">
             <thead>
-                <tr>
-                    <th>Pets</th>
-                </tr>
+                <th class="pet-name">{{pet.pet_name}}</th>
             </thead>
-            <tbody>
-                {% for pet in pets %}
+            <tbody class="table-body">
                 <tr>
-                    <img>
-                    <td>{{pet.pet_name}}</td>
-                        <td>
-                            <img src = "{{ url_for('static',filename='media/dog.jpeg') }}" alt="dog">
-                            <a href="/pet/{{pet.id}}"}}>View</a>
-                            {% if pet.owner.id == session['id'] %}
-                            <a href="/pet/edit/{{pet.id}}">Edit</a>
-                            <a href="/pet/delete/{{pet.id}}">Delete</a>
-                            {% endif %}
-                        </td>
-                    </tr>
+                    <td>
+                        <img class="link" src = "{{ url_for('static',filename='media/dog.jpeg') }}" alt="dog">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="table-data">{{ pet.pet_type }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="table-data">{{ pet.pet_breed }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="table-data">{{ pet.pet_description }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="link">
+                        {% if pet.owner.id == session['id'] %}
+                        <a href="/pet/edit/{{pet.id}}">Edit</a>
+                        <a href="/pet/delete/{{pet.id}}">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>

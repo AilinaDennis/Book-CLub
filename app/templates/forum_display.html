@@ -15,7 +15,6 @@
     <a href="/forum/delete/{{ forum.id }}">Delete Forum</a>
     <a href="/forum/edit/{{ forum.id }}">Edit Forum</a>
     {% endif %}
-
     <div class="comments">
         <form action="/comment/add/{{ forum.id }}" method="post">
             <input type="hidden" name="forum_id" value="{{ forum.id }}">
@@ -25,10 +24,11 @@
         </form>
         <div>
             {% for comment in comments %}
-                <div class="user">
-                    {{ comment.owner.first_name }}
-                    {{ comment.owner.last_name }}
-                </div>
+            <div class="user">
+                <img src = "{{ url_for('static',filename='media/dog.jpeg') }}" alt="dog">
+                {{ comment.owner.first_name }}
+                {{ comment.owner.last_name }}
+            </div>
                 {% if comment.id == selected %}
                     <form action="/{{ forum.id }}/comment/change/{{ comment.id }}" method="post">
                         <input type="hidden" name="id" value="{{ comment.id }}">
