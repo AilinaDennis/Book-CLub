@@ -39,7 +39,7 @@ class Forum():
 
         query = """
         SELECT forums.id, forums.title, forums.description, forums.created_at, forums.updated_at, users.id as user_id, users.first_name, 
-        users.last_name, users.email, users.created_at, users.updated_at
+        users.last_name, users.email, users.created_at, users.updated_at, image_path
         FROM forums
         JOIN users ON forums.user_id = users.id
         WHERE forums.id = %(id)s;
@@ -52,7 +52,8 @@ class Forum():
                 'last_name' : result[0]['last_name'],
                 'email' : result[0]['email'],
                 'created_at' : result[0]['created_at'],
-                'updated_at' : result[0]['updated_at']
+                'updated_at' : result[0]['updated_at'],
+                'image_path' : result[0]['image_path']
             }
         owner = User(forum_owner)
         selected.owner = owner
@@ -63,7 +64,7 @@ class Forum():
         
         query = """
         SELECT forums.id, forums.title, forums.description, forums.created_at, forums.updated_at, users.id as user_id, users.first_name, 
-        users.last_name, users.email, users.created_at, users.updated_at
+        users.last_name, users.email, users.created_at, users.updated_at, image_path
         FROM forums
         JOIN users ON forums.user_id = users.id
         """
@@ -76,7 +77,8 @@ class Forum():
                 'last_name' : index['last_name'],
                 'email' : index['email'],
                 'created_at' : index['created_at'],
-                'updated_at' : index['updated_at']
+                'updated_at' : index['updated_at'],
+                'image_path' : index['image_path']
             }
             owner = User(forum_owner)
             forum = Forum(index)
@@ -92,7 +94,7 @@ class Forum():
         }
         query = """
         SELECT comments.id, comments.user_id, comments.comment_body, comments.created_at, comments.updated_at, users.first_name, 
-        users.last_name, users.email, users.created_at, users.updated_at
+        users.last_name, users.email, users.created_at, users.updated_at, image_path
         FROM comments
         JOIN users on comments.user_id = users.id
         WHERE comments.forum_id = %(id)s
@@ -108,7 +110,8 @@ class Forum():
                     'last_name' : index['last_name'],
                     'email' : index['email'],
                     'created_at' : index['users.created_at'],
-                    'updated_at' : index['users.updated_at']
+                    'updated_at' : index['users.updated_at'],
+                    'image_path' : index['image_path']
                 }
             owner = User(comment_owner)
             comment.owner = owner

@@ -36,7 +36,7 @@ class Comment():
         }
         query = """
         SELECT comments.id, comments.forum_id, comments.user_id, comments.comment_body, comments.created_at, comments.updated_at, users.first_name, 
-        users.last_name, users.email, users.created_at, users.updated_at
+        users.last_name, users.email, users.created_at, users.updated_at, image_path
         FROM comments
         JOIN users on comments.user_id = users.id
         WHERE comments.id = %(id)s;
@@ -49,7 +49,8 @@ class Comment():
                 'last_name' : result[0]['last_name'],
                 'email' : result[0]['email'],
                 'created_at' : result[0]['users.created_at'],
-                'updated_at' : result[0]['users.updated_at']
+                'updated_at' : result[0]['users.updated_at'],
+                'image_path' : result[0]['image_path']
             }
         owner = User(comment_owner)
         selected.owner = owner
