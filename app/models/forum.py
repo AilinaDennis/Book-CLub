@@ -19,6 +19,18 @@ class Forum():
         self.owner = None
         self.comments = []
 
+    @staticmethod
+    def forum_validation(input):
+
+        is_valid = True
+        if input['title'] == '':
+            is_valid = False
+            flash('Forum Name is required.')
+        if input['description'] == '':
+            is_valid = False
+            flash('Forum Description is required.')
+        return is_valid
+
     @classmethod
     def create_forum(cls, data):
 
