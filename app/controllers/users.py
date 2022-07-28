@@ -29,6 +29,7 @@ def dashboard(selected):
     print(selected)
     user = User.get_user(selected)
     pets = User.user_pets(selected)
+    selected = int(selected)
     return render_template('dashboard.html', user = user, pets = pets)
 
 @app.route('/dashboard/<selected>/edit')

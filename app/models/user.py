@@ -6,7 +6,7 @@ from app.models.pet import Pet
 import os
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'C:/Users/Adam/Desktop/713solo/pet-blog/Pet-Blog-main/app/static/media'
+UPLOAD_FOLDER = 'C:/Users/Adam/Documents/group/Pet-Blog/app/static/media'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -43,7 +43,7 @@ class User():
             is_valid = False
             flash('Email is required', 'email')
         else:
-            if User.check_email(input['email']):
+            if User.check_email(input):
                 is_valid = False
                 flash('Email is already registered')
         if input['password'] == '':

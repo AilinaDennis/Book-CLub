@@ -1,6 +1,12 @@
 from app.config.mysqlconnection import MySQLConnection, connectToMySQL
 from flask import flash, session
 from app import app
+import os
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = 'C:/Users/Adam/Documents/group/Pet-Blog/app/static/media'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 db = 'pet_blog_schema'
 
@@ -14,6 +20,7 @@ class Pet():
         self.pet_breed = data['pet_breed']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.picture = data['image_path']
         self.owner = None
 
     @staticmethod
@@ -48,8 +55,8 @@ class Pet():
         print(data)
         data = Pet.pet_parse(data)
         query = """
-        INSERT INTO pets(pet_name, pet_description, pet_type, pet_breed, created_at, updated_at, user_id)
-        VALUES (%(pet_name)s, %(pet_description)s, %(pet_type)s, %(pet_breed)s, NOW(), NOW(), %(id)s);
+        INSERT INTO pets(pet_name, pet_description, pet_type, pet_breed, created_at, updated_at, user_id, image_path)
+        VALUES (%(pet_name)s, %(pet_description)s, %(pet_type)s, %(pet_breed)s, NOW(), NOW(), %(id)s, '/static/media/pet_placeholder.jpeg');
         """
         result =  connectToMySQL(db).query_db(query, data)
         selected = Pet.get_pet(result)
@@ -101,3 +108,33 @@ class Pet():
         """
 
         result = connectToMySQL(db).query_db(query, data)
+
+
+    @staticmethod
+    def allowed_file(filename):
+        return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+    @classmethod
+    def change_pet_image(self, pet_id, data):
+   
+        file = data['file']
+        if file.filename == '':
+            flash('No selected file')
+            return False
+        if file and Pet.allowed_file(file.filename):
+            filename = str(pet_id) + 'pet.jpeg'
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        data = {
+            'id' : pet_id,
+            'image_path' : f'/static/media/{filename}'
+        }
+        query = """
+        Update pets
+        SET image_path = %(image_path)s,
+        updated_at = NOW()
+        WHERE id = %(id)s
+        """
+        connectToMySQL(db).query_db(query, data)
+    

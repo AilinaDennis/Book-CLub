@@ -45,8 +45,8 @@
             <div class="profile">
                 <div class="pic_edit">
                     <img src = "{{ user.picture }}" id="image" alt="user">
-                    {% if selected == session['id'] %}
-                    <a href="/dashboard/{{ session['id'] }}/edit" class="text-nav"><button>Edit Profile</button></a>
+                    {% if user.id == session['id'] %}
+                        <a href="/dashboard/{{ session['id'] }}/edit" class="text-nav"><button>Edit Profile</button></a>
                     {% endif %}
                 </div>
                 {% if selected == session['id'] %}
