@@ -8,6 +8,9 @@
     <nav class="nav">
         <h1 class="text-primary">Pet Blog</h1>
         <h2 class="text-primary">Welcome {{ session['first_name'] }}</h2>
+        <div class="profile">
+
+        </div>
         <div class=>
             <a href="/create/pet" class="text-nav">Add a Pet</a>
             <a href="/user/{{session['id']}}" class="text-nav">Edit Profile</a>
@@ -32,7 +35,9 @@
                     <td>{{pet.pet_name}}</td>
                         <td>
                             <img src = "{{ url_for('static',filename='media/dog.jpeg') }}" alt="dog">
-                            <a href="/pet/{{pet.id}}"}}>View</a>
+                            <p>{{ pet.pet_type }}</p>
+                            <p>{{ pet.pet_breed }}</p>
+                            <p>{{ pet.pet_description }}</p>
                             {% if pet.owner.id == session['id'] %}
                             <a href="/pet/edit/{{pet.id}}">Edit</a>
                             <a href="/pet/delete/{{pet.id}}">Delete</a>
