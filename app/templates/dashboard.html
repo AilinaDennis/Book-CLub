@@ -1,52 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/dashboard.css') }}">
 <head>
     <title>Dashboard</title>
 </head>
 <body>
     <nav class="nav">
         <h1 class="text-primary">Pet Blog</h1>
-        <h2 class="text-primary">Welcome {{ session['first_name'] }}</h2>
-        <div class="profile">
-
-        </div>
-        <div class=>
-            <a href="/create/pet" class="text-nav">Add a Pet</a>
-            <a href="/user/{{session['id']}}" class="text-nav">Edit Profile</a>
-            <a href="/logout" class="text-nav">Logout</a>
+        <div>
+            {% if user.id != session['id'] %}
+                <a href="/dashboard/{{ session['id'] }}"><button>Dashboard</button></a>
+            {% endif %}
             <a href="/forums"><button>Forums</button></a>
-
+            <a href="/logout" class="text-nav"><button>Logout</button></a>
         </div>
 
     </nav>
-    <div class=>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Pets</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pet in pets %}
-                <tr>
-                    <img>
-                    <td>{{pet.pet_name}}</td>
-                        <td>
-                            <img src = "{{ url_for('static',filename='media/dog.jpeg') }}" alt="dog">
-                            <p>{{ pet.pet_type }}</p>
-                            <p>{{ pet.pet_breed }}</p>
-                            <p>{{ pet.pet_description }}</p>
-                            {% if pet.owner.id == session['id'] %}
+    <div class="container">
+        <div>
+            <div>
+                <h3>Pets</h3>
+                {% if user.id == session['id'] %}
+                    <a href="/create/pet" class="text-nav"><button>Add Pet!</button></a>
+                {% endif %}
+            </div>
+        <div class="pets">
+            {% for pet in pets %}
+                <div class="pet">
+                    <h4>{{ pet.pet_name }}</h4>
+                    <img src = "{{ pet.picture }}" id="image" alt="dog">
+                    {{ pet.pet_description }}
+                    {% if pet.owner.id == session['id'] %}
+                        <div>
                             <a href="/pet/edit/{{pet.id}}">Edit</a>
                             <a href="/pet/delete/{{pet.id}}">Delete</a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+        <div class="user">
+            <h3 class="text-primary">Welcome {{ session['first_name'] }}!</h3>
+            <div class="profile">
+                <div class="pic_edit">
+                    <img src = "{{ user.picture }}" id="image" alt="user">
+                    {% if selected == session['id'] %}
+                    <a href="/dashboard/{{ session['id'] }}/edit" class="text-nav"><button>Edit Profile</button></a>
+                    {% endif %}
+                </div>
+                {% if selected == session['id'] %}
+                <form action="/user/edit" method=post enctype=multipart/form-data>
+                    <label>First Name: </label>
+                    <input type="text" name="first_name" value="{{ user.first_name }}">
+                    <label>Last Name: </label>
+                    <input type="text" name="last_name" value="{{ user.last_name }}">
+                    <input type="hidden" name="id" value="{{ session['id'] }}">
+                    <label>New Profile Picture: </label>
+                    <input type="file" name="file">
+                    <input type="submit"s value="Edit">
+                    <a href="/dashboard/{{ user.id }}">Cancel</a>
+                </form>
+                {% else %}
+                <div>
+                    <label>First Name: </label>
+                    <p>{{ user.first_name }}</p>
+                </div>
+                <div>
+                    <label>Last Name:</label>
+                    <p>{{ user.last_name }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </body>
 </html>

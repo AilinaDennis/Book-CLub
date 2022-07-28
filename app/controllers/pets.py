@@ -26,8 +26,11 @@ def change_pet(selected):
 
 @app.route('/pet/change/<selected>', methods=['POST'])
 def edit_pet(selected):
+    user = session['id']
     selected = Pet.edit_pet(request.form)
-    return redirect(f'/pet/{selected.id}')
+    if not request.files['file'].filename == '':
+        Pet.change_pet_image(request.form['id'], request.files)
+    return redirect(f'/dashboard/{user}')
 
 @app.route('/pet/delete/<selected>')
 def delete_pet(selected):
