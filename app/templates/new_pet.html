@@ -10,15 +10,12 @@
         <div class="">
             <a href="/dashboard/{{session['id']}}" class="text-nav">Dashboard</a>
             <a href="/logout" class="text-nav">Logout</a>
-
-        </div>
-
     </nav>
     <form action="/pet/add" method="post" class="new">
-        <h2 class="">Upload your Pet</h2>
+        <h2 class="upload">Upload your Pet</h2>
         {% with messages = get_flashed_messages(category_filter=['pet']) %}
             {% if messages %}
-            <div class="alert alert-danger" role="alert">
+            <div class="alert-danger" role="alert">
                 <strong>All Fields Must Be Met</strong>
                     {% for message in messages %}
                     <p>{{message}}</p>
@@ -29,19 +26,25 @@
         <div>
             <input type="hidden" title="id">
             <div>
-                <div>
-                    <label for="pet_name">Name:</label>
-                    <input type="text" name="pet_name" class="text-small">
+                <input type="hidden" title="id">
+            <div>
+                <div class="new-form-control">
+                    <label for="pet_name" class="new-form">Name:</label>
+                    <input type="text" name="pet_name" class="new-input">
                 </div>
-                <div>
-                    <label for="pet_type">Animal Type:</label>
-                    <input name="pet_type" class="text-small"></input>
-                    <label for="pet_breed">Animal Breed:</label>
-                    <input name="pet_breed" class="text-small"></input>
-                    <label for="description">Tell us about your pet:</label>
-                    <textarea name="pet_description" class="text-small"></textarea>
+                <div class="new-form-control">
+                    <label for="pet_type" class="new-form">Animal Type:</label>
+                    <input name="pet_type" class="new-input"></input>
                 </div>
-                <br>
+                <div class="new-form-control">
+                    <label for="pet_breed" class="new-form">Animal Breed:</label>
+                    <input name="pet_breed" class="new-input"></input>
+                </div>
+                <div class="new-form-control">
+                    <label for="description" class="new-form">Tell us about your pet:</label>
+                    <textarea name="pet_description" class="new-textarea"></textarea>
+                </div>
+                <div class="new-form-control">
                 <input type="submit" value="Add Pet" class="btn">
                 </div>
             </div>

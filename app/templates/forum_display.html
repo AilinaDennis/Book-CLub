@@ -4,17 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>forum</title>
 </head>
 <body>
-    {{ forum.forum_title }}
-    {{ forum.forum_description }}
-    {{ forum.owner.first_name }}
-    {{ forum.owner.last_name }}
-    {% if forum.owner.id == session['id'] %}
-    <a href="/forum/delete/{{ forum.id }}">Delete Forum</a>
-    <a href="/forum/edit/{{ forum.id }}">Edit Forum</a>
-    {% endif %}
+    <nav class="nav">
+        <h1 class="text-primary">Welcome {{ session['first_name'] }}</h1>
+        <div class="">
+            <a href="/dashboard/{{session['id']}}" class="text-nav">Dashboard</a>
+            <a href="/logout" class="text-nav">Logout</a>
+    </nav>
+    <div class="forum-title">
+        <p>{{ forum.forum_title }}</p>
+    </div>
+    <div>
+        <p>{{ forum.forum_description }}</p>
+    </div>
+    <div>
+        <p>
+            {{ forum.owner.first_name }}
+            {{ forum.owner.last_name }}
+        </p>
+    </div>
+    <div>
+        {% if forum.owner.id == session['id'] %}
+        <a href="/forum/delete/{{ forum.id }}">Delete Forum</a>
+        <a href="/forum/edit/{{ forum.id }}">Edit Forum</a>
+        {% endif %}
+    </div>
+
 
     <div class="comments">
         <form action="/comment/add/{{ forum.id }}" method="post">

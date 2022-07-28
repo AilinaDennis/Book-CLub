@@ -11,13 +11,13 @@
             <a href="/dashboard/{{session['id']}}" class="text-nav">Dashboard</a>
             <a href="/logout" class="text-nav">Logout</a>
         </div>
-
     </nav>
-    <form action="/pet/change/{{ pet.id }}" method="post" enctype=multipart/form-data class="edit">
-        <h2 class="">Edit your Pet</h2>
+    <div>
+    <form action="/pet/change/{{ pet.id }}" method="post" enctype=multipart/form-data class="new">
+        <h2 class="edit">Edit your Pet</h2>
         {% with messages = get_flashed_messages(category_filter=['pet']) %}
             {% if messages %}
-            <div class="alert alert-danger" role="alert">
+            <div class="alert-danger" role="alert">
                 <strong>All Fields Must Be Met</strong>
                     {% for message in messages %}
                     <p>{{message}}</p>
@@ -25,28 +25,35 @@
             </div>
             {% endif %}
         {% endwith %}
-        <div class="text-primary">
+        <div>
             <div>
-                <div>
-                    <img src="{{ pet.picture }}" alt="">
+                <div class="image-control">
+                    <img  src="{{ pet.picture }}" alt="">
                     <input type=file name=file>
-                    <label for="name">Name: {{ pet.name }}</label>
+                </div>
+                <div class="new-form-control">
+                    <label class="text-small" for="name">Name: {{ pet.name }}</label>
                     <input type="text" name="pet_name" class="text-small" value="{{pet.pet_name}}">
                 </div>
-                <div class="">
-                    <label for="type">Animal Type:</label>
+                <div class="new-form-control">
+                    <label class="text-small" for="type">Animal Type:</label>
                     <input type="text" name="pet_type" class="text-small" value="{{ pet.pet_type }}"></input>
-                    <label for="breed">Animal Breed:</label>
+                </div>
+                <div class="new-form-control">
+                    <label class="text-small" for="breed">Animal Breed:</label>
                     <input type="text" name="pet_breed" class="text-small" value="{{ pet.pet_breed }}"></input>
-                    <label for="pet_description">Tell us about your pet</label>
+                </div>
+                <div class="new-form-control">
+                    <label class="text-small" for="pet_description">Tell us about your pet</label>
                     <textarea name="pet_description" class="text-small">{{ pet.pet_description }}</textarea>
                 </div>
-                <br>
-                <input type="submit" value="Edit Pet" class="btn">
-                <input type="hidden" name="id" value={{pet.id}}>
+                <div class="new-form-control">
+                    <input type="submit" value="Edit Pet" class="btn">
+                    <input type="hidden" name="id" value={{pet.id}}>
                 </div>
             </div>
         </div>
     </form>
+    </div>
 </body>
 </html>
