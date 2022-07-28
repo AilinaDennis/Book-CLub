@@ -16,6 +16,15 @@ class Comment():
         self.updated_at = data['updated_at']
         self.owner = None
 
+    @staticmethod
+    def comment_validation(input):
+
+        is_valid = True
+        if input['comment_body'] == '':
+            is_valid = False
+            flash('Make sure you are leaving a comment and not blank space.')
+        return is_valid
+
     @classmethod
     def create_comment(cls, data):
 

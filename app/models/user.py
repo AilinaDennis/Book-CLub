@@ -54,6 +54,17 @@ class User():
             flash('Passwords do not match')
 
         return is_valid
+    @staticmethod
+    def edit_validation(input):
+
+        is_valid = True
+        if input['first_name'] == '':
+            is_valid = False
+            flash('First name is required' 'first')
+        if input['last_name'] == '':
+            is_valid = False
+            flash('Last name is required', 'last')
+        return is_valid
 
     @staticmethod
     def user_parse(input):

@@ -21,12 +21,15 @@ def register():
 
 @app.route('/log', methods=['POST'])
 def login():
+    if not User.check_login(request.form):
+        return render_template('register.html')
     selected = User.check_login(request.form)
     return redirect(f'/dashboard/{selected.id}')
 
 @app.route('/dashboard/<selected>')
 def dashboard(selected):
-    print(selected)
+    if not session:
+        return redirect('/')
     user = User.get_user(selected)
     pets = User.user_pets(selected)
     selected = int(selected)
@@ -34,6 +37,8 @@ def dashboard(selected):
 
 @app.route('/dashboard/<selected>/edit')
 def edit_user(selected):
+    if not session:
+        return redirect('/')
     user = User.get_user(selected)
     pets = User.user_pets(selected)
     selected = user.id
@@ -41,11 +46,18 @@ def edit_user(selected):
 
 @app.route('/user/<selected>')
 def change_user(selected):
+    if not session:
+        return redirect('/')
     selected = User.get_user(selected)
     return render_template('edit_user.html', selected = selected)
 
 @app.route('/user/edit', methods=['POST'])
 def edit_user_picture():
+    if not session:
+        return redirect('/')
+    user = session['id']
+    if not User.edit_validation(request.form):
+        return redirect(f'/dashboard/{user}/edit')
     selected = User.edit_user(request.form)
     if not request.files['file'].filename == '':
         User.change_user_image(request.files)
@@ -64,5 +76,7 @@ def logout():
 
 @app.route('/post/image', methods=['POST'])
 def upload_file():
+    if not session:
+        return redirect('/')
     user = User.change_user_image(request.files)
     return redirect(f'/dashboard/{user.id}')
