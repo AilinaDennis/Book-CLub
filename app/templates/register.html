@@ -5,12 +5,12 @@
     <title>Login</title>
 </head>
 <body>
-    <div>
+    <div class="container">
         <form action="/regi" method="post" class="register">
             <h2 class="text-primary">Register</h2>
             {% with messages = get_flashed_messages(category_filter=['regi']) %}
                 {% if messages %}
-                <div class="alert alert-danger" role="alert">
+                <div class="alert-danger" role="alert">
                     <strong>All Fields Must Be Met</strong>
                         {% for message in messages %}
                         <p>{{message}}</p>
@@ -20,23 +20,23 @@
             {% endwith %}
             <div class="form-group">
                 <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" class="form-control">
+                <input type="text" name="first_name">
             </div>
             <div class="form-group">
                 <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" class="form-control">
+                <input type="text" name="last_name">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" name="email" class="form-control">
+                <input type="text" name="email">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" name="password">
             </div>
             <div class="form-group">
                 <label for="confirm">Confirm Password:</label>
-                <input type="password" name="confirm" class="form-control">
+                <input type="password" name="confirm">
             </div>
             <input type="submit" value="Register" class="btn">
         </form>
@@ -54,7 +54,7 @@
                 {% endif %}
             {% endwith %}
                 <label for="email">Email:</label>
-                <input type="text" name="email" class="form-control">
+                <input type="text" name="email">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>

@@ -29,10 +29,6 @@
     margin:0px auto;
 }
 
-.form-control{
-
-}
-
 .login, .register{
     border: 3px outset;
     border-radius: 10px;
@@ -74,11 +70,7 @@
 }
 
 .text-small{
-
-}
-
-.edit{
-
+    font-size: 20px;
 }
 
 .new{
@@ -88,20 +80,13 @@
     margin-top: 100px;
     width: 700px;
     height:500px;
+    padding: 20px;
 }
 
 .new-form{
     font-size: 25px;
     text-align: left;
     margin: 0px;
-}
-
-.new-textarea{
-    
-}
-
-.new-input{
-    
 }
 
 .new-form-control{
@@ -142,4 +127,57 @@
 .link{
     display:flex;
     align-items: center;
+}
+
+.profile{
+    display:flex;
+    align-items: center;
+}
+
+.profile-text{
+    width:fit-content;
+    height: fit-content;
+    margin: 0PX;
+}
+
+.profile-name{
+    margin:0px;
+}
+
+.edit{
+    font-size: 45px;
+}
+
+.image-control{
+    width:fit-content;
+    height: fit-content;
+}
+
+.forum{
+    margin: 20px;
+}
+
+.forum-title{
+    font-size: 50px;
+}
+
+.add-forum{
+    display: inline;
+}
+
+.forum-head{
+    font-size: 30px;
+}
+
+.forum-data{
+    font-size: 20px;
+}
+
+.forum-table{
+    margin:10px;
+}
+
+.alert-danger{
+    color:red;
+    font-size: 20px;
 }

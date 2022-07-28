@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/forums.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Forums</title>
 </head>
 <body>
     <nav class="nav">
         <h1 class="text-primary">Pet Blog</h1>
-        <div>
-            <a href="/dashboard/{{ session['id'] }}"><button>Dashboard</button></a>
-            <a href="/logout" class="text-nav"><button>Logout</button></a>
-        </div>
+        <div class="">
+            <a href="/dashboard/{{session['id']}}" class="text-nav">Dashboard</a>
+            <a href="/logout" class="text-nav">Logout</a>
     </nav>
-    <div class="container">
-        <div>
-            <h2>Forums</h2>
-            <a href="/forum/add">Create a Forum!</a>
+    <div class="new">
+        <div class="add-forum">
+            <h2 class="upload">Forums</h2>
+            <a class="forum" href="/forum/add">Create a Forum!</a>
         </div>
-        <table>
+        <table class="forum-table">
         {% for forum in forums %}
         <div class="forum">
                 <tr>
-                    <td><h3><a href="/forum/{{ forum.id }}">{{ forum.forum_title }}</a></h3></td>
-                    <td><p>About: {{ forum.forum_description }}</p></td>
-                    <td><p>Owner: <a href="/dashboard/{{ forum.owner.id }}">{{ forum.owner.first_name }}  {{ forum.owner.last_name }}</a></p></td>
+                    <td class="forum-head"><h3><a href="/forum/{{ forum.id }}">{{ forum.forum_title }}</a></h3></td>
+                </tr>
+                <tr>
+                    <td class="forum-data"><p>About: {{ forum.forum_description }}</p></td>
+                </tr>
+                    <td class="forum-data"><p>Owner: <a href="/dashboard/{{ forum.owner.id }}">{{ forum.owner.first_name }}  {{ forum.owner.last_name }}</a></p></td>
                 </tr>
         </div>
         {% endfor %}
